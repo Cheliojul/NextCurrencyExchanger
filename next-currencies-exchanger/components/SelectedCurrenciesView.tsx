@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useStore } from '../lib/utils/Hooks/useStoreHook';
+import { useStore } from '../lib/store/store';
 import CurrencyView from './CurrencyView';
 
 const SelectedCurrenciesView: React.FC = () => {

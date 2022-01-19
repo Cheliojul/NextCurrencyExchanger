@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import MainPage from '../components/MainPage';
 import { MockData } from '../lib/utils/mock';
-import { useStore } from '../lib/utils/Hooks/useStoreHook';
+import { useStore } from '../lib/store/store';
 
 import instance from './../lib/utils/axios';
 

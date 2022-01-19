@@ -1,7 +1,7 @@
 import React, { FocusEvent, useState } from 'react';
-import { useCrossTabState } from '../lib/utils/Hooks/useCrossTabState';
+import { useCrossTabState } from '../lib/hooks/useCrossTabState';
 
-import { useStore } from '../lib/utils/Hooks/useStoreHook';
+import { useStore } from '../lib/store/store';
 
 type StateTypeProps = {
   subCurrency: string;

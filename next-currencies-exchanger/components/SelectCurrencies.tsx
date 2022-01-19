@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect } from 'react';
 
-import { useCrossTabState } from '../lib/utils/Hooks/useCrossTabState';
-import { useStore } from '../lib/utils/Hooks/useStoreHook';
+import { useCrossTabState } from '../lib/hooks/useCrossTabState';
+import { useStore } from '../lib/store/store';
 
 const SelectCurrencies: React.FC = () => {
   const { mainCurrency, allCurrencies, setMainCurrency } = useStore(
