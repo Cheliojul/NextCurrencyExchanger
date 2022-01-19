@@ -8,12 +8,12 @@ import SelectedCurrenciesView from './SelectedCurrenciesView';
 
 const MainPage: NextPage = () => {
   return (
-    <div className="">
+    <>
       <SelectCurrencies />
       <AllCurrenciesView />
       <SelectedCurrenciesView />
       <ExchangePairList />
-    </div>
+    </>
   )
 }
 export default MainPage;
