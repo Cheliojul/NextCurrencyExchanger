@@ -1,11 +1,12 @@
 import create from 'zustand';
 import { mountStoreDevtool } from 'simple-zustand-devtools';
 
+export type RatesDataType = { [x: string]: number }[] | [];
 type RatesType = {
   mainCurrency: string;
   allCurrencies: string[];
   subCurrencies: string[];
-  rates: { [x: string]: number }[] | [];
+  rates: RatesDataType;
   setRates: (payload: { [x: string]: number }[]) => void;
   setMainCurrency: (payload: string) => void;
   setSubCurrencies: (payload: string[]) => void;

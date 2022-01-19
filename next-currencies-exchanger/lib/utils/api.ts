@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const instance = axios.create({
   baseURL: 'http://api.exchangeratesapi.io/v1',
@@ -8,6 +8,8 @@ const instance = axios.create({
   },
 });
 
+type InterceptorsCallbackReturnType = Promise<AxiosRequestConfig>;
+export type Service<T, D> = (args: T) => D;
 instance.interceptors.response.use(
   (response) => {
     return response;
