@@ -8,8 +8,6 @@ const instance = axios.create({
   },
 });
 
-type InterceptorsCallbackReturnType = Promise<AxiosRequestConfig>;
-export type Service<T, D> = (args: T) => D;
 instance.interceptors.response.use(
   (response) => {
     return response;
