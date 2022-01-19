@@ -20,12 +20,11 @@ const Home: NextPage = ({ data }) => {
 
   const fetchNewRates = async () => {
     const newData = await instance().get(
-      'http://api.exchangeratesapi.io/v1/latest',
+      'http://api.exchangeratesapi.io/v1/',
       {
         method: 'get',
         params: {
           access_key: '9e4ed663c99e27f164fa1aa8972c66de',
-          base: 'USD',
         },
       }
     );
