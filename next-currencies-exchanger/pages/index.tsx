@@ -5,7 +5,7 @@ import MainPage from '../components/MainPage';
 import { MockData } from '../lib/utils/mock';
 import { useStore } from '../lib/store/store';
 
-import instance from '../lib/utils/api';
+import { getCurrencyRate } from '../lib/services/currencyService';
 
 const Home: NextPage = ({ data }) => {
   const { mainCurrency, setRates, setAllCurrencies } = useStore(
@@ -19,15 +19,13 @@ const Home: NextPage = ({ data }) => {
   }, [data]);
 
   const fetchNewRates = async () => {
-    const newData = await instance.get(
-      'http://api.exchangeratesapi.io/v1/',
-      {
-        params: {
-          access_key: '9e4ed663c99e27f164fa1aa8972c66de',
-        },
-      }
-    );
-    setRates(newData.data.rates);
+    try {
+      const newData = await getCurrencyRate(
+        'http://api.exchangeratesapi.io/v1/',
+        {}
+      );
+      setRates(newData.data.rates);
+    } catch (e) {}
   };
 
   useEffect(() => {
@@ -42,15 +40,16 @@ const Home: NextPage = ({ data }) => {
 };
 
 export async function getServerSideProps() {
-  const data = await instance.get(
-    'http://api.exchangeratesapi.io/v1/latest',
-    {
-      params: {
-        access_key: '9e4ed663c99e27f164fa1aa8972c66de',
-      },
-    }
-  );
-  return { props: { data: data.data.rates || MockData } };
+  try {
+    const data = await getCurrencyRate(
+      'http://api.exchangeratesapi.io/v1/',
+      {}
+    );
+
+    return { props: { data: data.data.rates } };
+  } catch (e) {}
+
+  return { props: { data: MockData } };
 }
 
 export default Home;

@@ -1,7 +1,6 @@
-import React, { FocusEvent, useState } from 'react';
-import { useCrossTabState } from '../lib/hooks/useCrossTabState';
+import React, { ChangeEvent, FocusEvent, useState } from 'react';
 
-import { useStore } from '../lib/store/store';
+import { RatesDataType, useStore } from '../lib/store/store';
 
 type StateTypeProps = {
   subCurrency: string;
@@ -14,7 +13,7 @@ const initialState = {
 const CurrencyPair: React.FC<StateTypeProps> = ({ subCurrency }) => {
   const { rates, mainCurrency } = useStore((state) => state);
   const [pairState, setPairState] = useState(initialState);
-  const onInputChange = (event) => {
+  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setPairState({
       ...pairState,
@@ -29,7 +28,11 @@ const CurrencyPair: React.FC<StateTypeProps> = ({ subCurrency }) => {
       setPairState({
         ...pairState,
         'second-currency':
-          Math.round(input.value * (rates[subCurrency] || 1) * 100) / 100,
+          Math.round(
+            Number(input.value) *
+              Number(rates[subCurrency as keyof RatesDataType] || 1) *
+              100
+          ) / 100,
       });
     }
 
@@ -37,7 +40,11 @@ const CurrencyPair: React.FC<StateTypeProps> = ({ subCurrency }) => {
       setPairState({
         ...pairState,
         'first-currency':
-          Math.round((input.value / (rates[subCurrency] || 1)) * 100) / 100,
+          Math.round(
+            (Number(input.value) /
+              Number(rates[subCurrency as keyof RatesDataType] || 1)) *
+              100
+          ) / 100,
       });
     }
   };
