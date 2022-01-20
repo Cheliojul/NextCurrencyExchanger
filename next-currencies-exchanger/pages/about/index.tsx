@@ -1,5 +1,7 @@
+import { AboutPage } from '../../components/AboutPage';
+
 function About() {
-  return (<div>Currency Exchanger Example</div>)
+  return <AboutPage />;
 }
 
-export default About
+export default About;

@@ -40,8 +40,16 @@ const Home: NextPage = ({ data }) => {
 };
 
 export async function getServerSideProps() {
-  const data = await getCurrencyRate('http://api.exchangeratesapi.io/v1/', {});
-  return { props: { data: data.data.rates || MockData } };
+  try {
+    const data = await getCurrencyRate(
+      'http://api.exchangeratesapi.io/v1/',
+      {}
+    );
+
+    return { props: { data: data.data.rates } };
+  } catch (e) {}
+
+  return { props: { data: MockData } };
 }
 
 export default Home;
