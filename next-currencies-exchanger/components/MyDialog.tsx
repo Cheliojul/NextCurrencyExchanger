@@ -1,18 +1,17 @@
 import { useRef, useState } from 'react';
-import { ToastContainer, toast }  from 'react-toastify'
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Dialog } from '@headlessui/react';
 
 export const MyDialog = (props) => {
   const { isOpen, onClose, handleClose } = props;
-  const warn = () => { };
-  const error = () => toast.error("Error!");
-  const success = () => toast.success("Success!");
+  const warn = () => toast.warn('Warning!');
+  const error = () => toast.error('Error!');
+  const success = () => toast.success('Success!');
   return (
-    <Dialog open={isOpen} onClose={onClose} className="">
-      <ToastContainer  />
-      <div className="flex items-center justify-center min-h-screen">
-        <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+    <Dialog open={isOpen} onClose={onClose}>
+      <div className="flex items-center justify-center">
+        <Dialog.Overlay className="fixed inset-0 bg-black opacity-40" />
         <div className="relative bg-white rounded max-w-sm mx-auto p-8">
           <Dialog.Title className="text-xl">Title of dialog</Dialog.Title>
           <Dialog.Description>

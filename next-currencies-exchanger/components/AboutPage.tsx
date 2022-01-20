@@ -1,11 +1,18 @@
 import { useState } from 'react';
 
-import { MyDialog } from './Dialog';
+import { MyDialog } from './MyDialog';
+import ModalDialog from './ModalDialog';
+import { DialogWithList } from './DialogWithList';
 
 export const AboutPage = () => {
   const [defaultIsOpen, setDefaultIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalWithListIsOpen, setModalWithListIsOpen] = useState(false);
   const toggleDefaultModal = () => {
     setDefaultIsOpen(!defaultIsOpen);
+  };
+  const toggleModal = () => {
+    setModalIsOpen(!modalIsOpen);
   };
   return (
     <div>
@@ -18,13 +25,13 @@ export const AboutPage = () => {
       </span>
       <span
         className="p-2 lg:px-4 md:mx-2 text-white rounded bg-indigo-600"
-        onClick={() => toggleDefaultModal()}
+        onClick={() => toggleModal()}
       >
         Open Modal with Modal
       </span>
       <span
         className="p-2 lg:px-4 md:mx-2 text-white rounded bg-indigo-600"
-        onClick={() => toggleDefaultModal()}
+        onClick={()=>setModalWithListIsOpen(true)}
       >
         Open Modal with List
       </span>
@@ -33,6 +40,8 @@ export const AboutPage = () => {
         onClose={() => null}
         handleClose={toggleDefaultModal}
       />
+      <ModalDialog isOpen={modalIsOpen} setIsOpen={setModalIsOpen}/>
+      <DialogWithList isOpen={modalWithListIsOpen} onClose={() => null} handleClose={()=>setModalWithListIsOpen(false)} />
     </div>
   );
 };
