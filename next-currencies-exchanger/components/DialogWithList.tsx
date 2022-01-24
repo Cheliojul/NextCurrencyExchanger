@@ -1,13 +1,18 @@
-import { useRef, useState } from 'react';
+import { Ref, RefObject, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Dialog } from '@headlessui/react';
 
-export const DialogWithList = (props) => {
+import { DialogProps } from '../lib/types/entities';
+
+export const DialogWithList: React.FC<DialogProps> = (props: DialogProps) => {
   const { isOpen, onClose, handleClose } = props;
-  let dialogRef = useRef(null);
+  let dialogRef = useRef<HTMLDivElement>(null);
   const onPageChange = () => {
-    dialogRef?.current.scrollTo({ top: 0, behavior: 'smooth' });
+    const element = dialogRef.current;
+    if (element !== null) {
+      element.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
   return (
     <Dialog

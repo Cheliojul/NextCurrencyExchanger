@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 import MainPage from '../components/MainPage';
 import { MockData } from '../lib/utils/mock';
 import { useStore } from '../lib/store/store';
-
 import { getCurrencyRate } from '../lib/services/currencyService';
+import { ExchangeRatesType } from '../lib/types/entities';
 
-const Home: NextPage = ({ data }) => {
+type HomePageProps = { data: ExchangeRatesType };
+const Home: NextPage<HomePageProps> = ({ data }: HomePageProps) => {
   const { mainCurrency, setRates, setAllCurrencies } = useStore(
     (state) => state
   );
@@ -16,7 +17,7 @@ const Home: NextPage = ({ data }) => {
     let currenciesList = Object.keys(data);
     setRates(data);
     setAllCurrencies(currenciesList);
-  }, [data]);
+  }, [data, setRates, setAllCurrencies]);
 
   const fetchNewRates = async () => {
     try {

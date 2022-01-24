@@ -1,13 +1,15 @@
 import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Dialog } from '@headlessui/react';
 
-export const MyDialog = (props) => {
+import { DialogProps } from '../lib/types/entities';
+
+export const MyDialog: React.FC<DialogProps> = (props: DialogProps) => {
   const { isOpen, onClose, handleClose } = props;
   const warn = () => toast.warn('Warning!');
   const error = () => toast.error('Error!');
   const success = () => toast.success('Success!');
+
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <div className="flex items-center justify-center">

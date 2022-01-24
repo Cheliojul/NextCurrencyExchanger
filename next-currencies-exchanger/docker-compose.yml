@@ -1,0 +1,13 @@
+  version: "3.7"
+  services:
+    app:
+      container_name: app
+      image: node:alpine
+      ports:
+      - 3000:3000
+      working_dir: /app
+      volumes:
+        - ./:/app
+      environment:
+        ACCESS: prod
+      command: npm run prod

@@ -1,11 +1,12 @@
 import { Dialog } from '@headlessui/react';
 import { useState } from 'react';
+import { DialogProps } from '../lib/types/entities';
 import { MyDialog } from './MyDialog';
 
-const ModalDialog = ({ isOpen, setIsOpen }) => {
+const ModalDialog:React.FC<DialogProps> = ({ isOpen, handleClose }:DialogProps) => {
   const [innerModal, setInnerModal] = useState(false);
   return (
-    <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+    <Dialog open={isOpen} onClose={handleClose}>
       <MyDialog
             isOpen={innerModal}
             onClose={() => {}}
@@ -21,7 +22,7 @@ const ModalDialog = ({ isOpen, setIsOpen }) => {
           
           <button
             className="border-black border-solid border rounded mx-2 mt-8 py-1 px-2"
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
           >
             Cancel
           </button>

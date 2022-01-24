@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Router from 'next/router';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Header: NextPage = () => {
   const redirect = (url: string) => {

@@ -12,8 +12,8 @@ const SelectedCurrenciesView: React.FC = () => {
         Selected currencies:
       </p>
       <div className="flex">
-        {subCurrencies.map((currency) => (
-          <div>
+        {subCurrencies.map((currency, i) => (
+          <div key={i}>
             <CurrencyView currency={currency} />
           </div>
         ))}

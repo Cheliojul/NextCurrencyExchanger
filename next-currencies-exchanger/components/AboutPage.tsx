@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { MyDialog } from './MyDialog';
 import ModalDialog from './ModalDialog';
 import { DialogWithList } from './DialogWithList';
@@ -14,6 +13,7 @@ export const AboutPage = () => {
   const toggleModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
+  console.log(process.env.ACCESS_KEY !== 'prod' ? 'Develop' : 'Docker')
   return (
     <div>
       <p className="p-2"> Lets try Modal Windows</p>
@@ -31,7 +31,7 @@ export const AboutPage = () => {
       </span>
       <span
         className="p-2 lg:px-4 md:mx-2 text-white rounded bg-indigo-600"
-        onClick={()=>setModalWithListIsOpen(true)}
+        onClick={() => setModalWithListIsOpen(true)}
       >
         Open Modal with List
       </span>
@@ -40,8 +40,16 @@ export const AboutPage = () => {
         onClose={() => null}
         handleClose={toggleDefaultModal}
       />
-      <ModalDialog isOpen={modalIsOpen} setIsOpen={setModalIsOpen}/>
-      <DialogWithList isOpen={modalWithListIsOpen} onClose={() => null} handleClose={()=>setModalWithListIsOpen(false)} />
+      <ModalDialog
+        isOpen={modalIsOpen}
+        onClose={() => null}
+        handleClose={() => setModalIsOpen(false)}
+      />
+      <DialogWithList
+        isOpen={modalWithListIsOpen}
+        onClose={() => null}
+        handleClose={() => setModalWithListIsOpen(false)}
+      />
     </div>
   );
 };

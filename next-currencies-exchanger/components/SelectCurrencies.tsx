@@ -13,7 +13,7 @@ const SelectCurrencies: React.FC = () => {
     if (main !== '') {
       setMainCurrency(main);
     }
-  }, [main]);
+  }, [main, setMainCurrency]);
 
   const onMainCurrencyChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;

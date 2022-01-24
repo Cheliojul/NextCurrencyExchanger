@@ -8,8 +8,8 @@ const ExchangePairList: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      {subCurrencies.map((subCurrency) => (
-        <CurrencyPair subCurrency={subCurrency}/>
+      {subCurrencies.map((subCurrency, i) => (
+        <CurrencyPair key={i} subCurrency={subCurrency} />
       ))}
     </div>
   );
